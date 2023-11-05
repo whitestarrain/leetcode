@@ -1,11 +1,11 @@
 # 刷题环境
 
-> 开始使用leetcode-cli写算法了。`npm install -g ketankr9/leetcode-cli`
+> ~开始使用leetcode-cli写算法了~， 换成leetgo了
 >
 > 语言可能都用用，顺便语法复习
 >
 > 环境：
-> - leetcode-cli(questions)
+> - leetgo(questions)
 > - nvim 0.9 (editor&lsp client)
 >   - nvim-lspconfig
 > - LLVM
