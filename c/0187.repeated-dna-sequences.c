@@ -4,11 +4,41 @@
 
 // @lc code=begin
 
+#include <stdlib.h>
+
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
-char** findRepeatedDnaSequences(char* s, int* returnSize) {
-    
+
+typedef struct
+{
+    void        *key;
+    void        *value;
+    struct Node *next;
+} *Node;
+
+typedef struct
+{
+    Node node;
+    Node next;
+} List;
+
+void hashmap() {}
+
+void hashmap_free() {}
+
+void hashmap_put() {}
+
+void hashget() {}
+
+char **findRepeatedDnaSequences(char *s, int *returnSize)
+{
+    return NULL;
 }
 
 // @lc code=end
+
+int main(int argc, char *argv[])
+{
+    return EXIT_SUCCESS;
+}
