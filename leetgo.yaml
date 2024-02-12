@@ -3,6 +3,7 @@
 language: zh
 code:
   lang: c
+  modifiers:
 leetcode:
   site: https://leetcode.cn
   credentials:
