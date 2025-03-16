@@ -2,7 +2,7 @@
 # For more details, please refer to https://github.com/j178/leetgo
 language: zh
 code:
-  lang: c
+  lang: cpp
   modifiers:
 leetcode:
   site: https://leetcode.cn

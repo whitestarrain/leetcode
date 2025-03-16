@@ -1,0 +1,9 @@
+input:
+"1234"
+output:
+
+
+input:
+"24123"
+output:
+true
