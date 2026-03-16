@@ -24,6 +24,7 @@ public:
         if (head == NULL || head->next == NULL) {
             return head;
         }
+        // head node1 node2 三个滑动指针
         ListNode *node1 = head->next;
         ListNode *node2 = head->next->next;
 		head->next = NULL;

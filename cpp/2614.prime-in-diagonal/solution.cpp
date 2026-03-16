@@ -26,6 +26,8 @@ public:
     }
 
 private:
+    // 判断是否是质数，一个数如果有平方根以上的因数，那肯定也有平方根以下的因数。
+    // 所以判断是不是因数，从2开始，直到 number 平方根就行，不用到 number-1
     bool check_is_prime(int number)
     {
         if (number <= 1) {
