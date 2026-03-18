@@ -3,31 +3,107 @@
 // https://leetcode.cn/problems/lru-cache/
 
 #include <bits/stdc++.h>
+#include <map>
 #include "LC_IO.h"
 using namespace std;
 
 // @lc code=begin
 
-struct Node {
-	int key;
-	int val;
-	Node *prev;
-	Node *next;
-	Node(): key(0), val(0), prev(NULL), next(NULL){};
-	Node(int key, int val): key(key), val(val), prev(NULL), next(NULL){};
+struct Node
+{
+    int   key;
+    int   val;
+    Node *prev = nullptr;
+    Node *next = nullptr;
+    Node()
+        : key(0)
+        , val(0)
+        , prev(nullptr)
+        , next(nullptr) {};
+    Node(int key, int val)
+        : key(key)
+        , val(val)
+        , prev(nullptr)
+        , next(nullptr) {};
 };
 
-class LRUCache {
+class LRUCache
+{
+private:
+    int              capacity = 0;
+    map<int, Node *> cache;
+    Node            *head = nullptr;
+    Node            *tail = nullptr;
+    void             moveToHead(Node *node)
+    {
+        if (node->prev == nullptr) {
+            return;
+        }
+        node->prev->next = node->next;
+        if (node->next != nullptr) {
+            node->next->prev = node->prev;
+        }
+        else {
+            this->tail = node->prev;
+        }
+        node->prev       = nullptr;
+        node->next       = this->head;
+        this->head->prev = node;
+        this->head       = node;
+    }
+    void removeTail()
+    {
+        if (this->tail == nullptr) {
+            return;
+        }
+        if (this->tail->next == nullptr && this->tail->prev == nullptr) {
+            return;
+        }
+        int k                  = this->tail->key;
+        this->tail->prev->next = nullptr;
+        this->tail             = this->tail->prev;
+        this->cache.erase(k);
+    }
+
 public:
-    LRUCache(int capacity) {
+    LRUCache(int capacity) { this->capacity = capacity; }
+
+    int get(int key)
+    {
+        if (this->cache.find(key) == this->cache.end()) {
+            return -1;
+        }
+        Node *node = this->cache[key];
+        moveToHead(node);
+        return node->val;
     }
 
-    int get(int key) {
+    void put(int key, int value)
+    {
+        if (this->cache.find(key) == this->cache.end()) {
+            Node *node       = new Node(key, value);
+            this->cache[key] = node;
+            if (this->head == nullptr && this->tail == nullptr) {
+                this->head = node;
+                this->tail = node;
+            }
+            else {
+                node->next       = this->head;
+                this->head->prev = node;
+                this->head       = node;
+            }
+        }
+        else {
+            Node *node = this->cache[key];
+            if (node->val != value) {
+                node->val = value;
+            }
+            moveToHead(node);
+        }
 
-    }
-
-    void put(int key, int value) {
-
+        if (this->cache.size() > this->capacity) {
+            this->removeTail();
+        }
     }
 };
 
