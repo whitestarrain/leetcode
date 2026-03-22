@@ -13,8 +13,9 @@ using namespace std;
 // 其实build第一次后，后面只需要更新特定一个路径即可
 class Solution
 {
-public:
-    int findKthLargest(vector<int> &nums, int k)
+private:
+	// 基于堆排序
+    int HeapSortSolution(vector<int> &nums, int k)
     {
         int heapSize = nums.size();
         buildMaxHeap(nums, heapSize);
@@ -57,6 +58,18 @@ public:
         nums[i] = nums[i] ^ nums[j];
         nums[j] = nums[i] ^ nums[j];
         nums[i] = nums[i] ^ nums[j];
+    }
+
+	// 快速选择方法。基本思路和快速排序相同
+    int QuickSelectSolution(vector<int> &nums, int k)
+    {
+		return 0;
+    }
+
+public:
+    int findKthLargest(vector<int> &nums, int k)
+    {
+        return HeapSortSolution(nums, k);
     }
 
     // void buildMaxHeap(vector<int> &nums, int heapSize)
