@@ -12,9 +12,10 @@ using namespace std;
 class Solution
 {
 public:
-	// 2  3  4 5
-	// 60 20 5 1
-	// 1  2   6  24
+    // 先从右到左，再从左到右
+    //  2          3        4       5
+    //  60(2*4*5)  20(4*5)  5(5)    1
+    //  1          2(2)     6(2*3)  24(2*3*4)
     vector<vector<int>> constructProductMatrix(vector<vector<int>> &grid)
     {
         int                 mod = 12345;
